@@ -1,7 +1,15 @@
 ﻿using UnityEngine;
 
-public enum MoveDirection{
-	Right, Left, Up, Down
+public enum MoveDirection
+{
+    Right ,
+    Left ,
+    Up ,
+    Down ,
+    UpLeft ,
+    UpRight ,
+    DownLeft ,
+    DownRight
 }
 
 public class InputManager : MonoBehaviour {
@@ -17,22 +25,42 @@ public class InputManager : MonoBehaviour {
 
 		if(gameManager.state == GameState.Playing)
         {
-            if (Input.GetKeyDown(KeyCode.RightArrow)){
+            if (Input.GetKeyDown(KeyCode.D)){
 				gameManager.Move(MoveDirection.Right);
 				gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
 			}
-			else if(Input.GetKeyDown(KeyCode.LeftArrow)){
+			else if(Input.GetKeyDown(KeyCode.A)){
 				gameManager.Move(MoveDirection.Left);
 				gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
 			}
-			else if(Input.GetKeyDown(KeyCode.UpArrow)){
+			else if(Input.GetKeyDown(KeyCode.W)){
 				gameManager.Move(MoveDirection.Up);
 				gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
 			}
-			else if(Input.GetKeyDown(KeyCode.DownArrow)){
+			else if(Input.GetKeyDown(KeyCode.X)){
 				gameManager.Move(MoveDirection.Down);
 				gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
 			}
-		}
+            else if (Input.GetKeyDown(KeyCode.E))
+            {
+                gameManager.Move(MoveDirection.UpLeft);
+                gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
+            }
+            else if (Input.GetKeyDown(KeyCode.Q))
+            {
+                gameManager.Move(MoveDirection.UpRight);
+                gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
+            }
+            else if (Input.GetKeyDown(KeyCode.Z))
+            {
+                gameManager.Move(MoveDirection.DownLeft);
+                gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
+            }
+            else if (Input.GetKeyDown(KeyCode.C))
+            {
+                gameManager.Move(MoveDirection.DownRight);
+                gameManager.PlaySound(gameManager.soundManager.mergeTile, 1.0f);
+            }
+        }
 	}
 }
