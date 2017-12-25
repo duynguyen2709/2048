@@ -356,7 +356,7 @@ public class GameManager : MonoBehaviour
     private void GameOver()
     {
         gameOverScoreText.text = ScoreTracker.instance.Score.ToString();
-        gameOverPanel.SetActive(true);
+        //gameOverPanel.SetActive(true);
 
         state = GameState.GameOver;
 
@@ -394,13 +394,29 @@ public class GameManager : MonoBehaviour
                     }
                 }
             }
-            
-        }
 
+            for (int i = 0 ; i < columns.Count ; i++)
+            {
+                for (int j = 0 ; j < columns [i].Length - 1 ; j++)
+                {
+                    if (AllTiles [columns [i] [j].indRow , columns [i] [j].indCol].Number ==
+                        AllTiles [columns [i] [j + 1].indRow , columns [i] [j + 1].indCol].Number)
+                    {
+                        return true;
+                    }
+                    if (AllTiles[rows[i][j].indRow, rows[i][j].indCol].Number ==
+                        AllTiles[rows[i][j + 1].indRow, rows[i][j + 1].indCol].Number)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
         return false;
+
     }
 
-    // play FxSound function:
+    
     public void PlaySound(AudioClip clip, float volMultiplier = 1.0f)
     {
         if (clip && soundManager.fxEnable)
